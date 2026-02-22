@@ -3,6 +3,7 @@
   "displayName": "Git-Msg",
   "description": "Automated Git commit message writer using Gemini",
   "version": "0.0.1",
+  "icon": "images/extensionIcon.png",
   "publisher": "SudhanshuPatil",
   "repository": {
     "type": "git",
