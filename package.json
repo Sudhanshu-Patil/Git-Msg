@@ -1,0 +1,83 @@
+{
+  "name": "git-msg",
+  "displayName": "Git-Msg",
+  "description": "Automated Git commit message writer using Gemini",
+  "version": "0.0.1",
+  "publisher": "SudhanshuPatil",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sudhanshu-Patil/Git-Msg"
+  },
+
+  "homepage": "https://github.com/Sudhanshu-Patil/Git-Msg",
+  "bugs": {
+    "url": "https://github.com/Sudhanshu-Patil/Git-Msg/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-msg.generate",
+        "title": "Generate Commit Message",
+        "icon": "$(sparkle)"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "git-msg.generate",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Git-Msg AI",
+      "properties": {
+        "gitMsg.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your Google Gemini API Key (Get one at https://aistudio.google.com)"
+        },
+        "gitMsg.model": {
+          "type": "string",
+          "default": "gemini-2.0-flash",
+          "description": "The Gemini model to use",
+          "enum": [
+            "gemini-2.0-flash",
+            "gemini-1.5-flash",
+            "gemini-1.5-pro"
+          ]
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.90.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.16.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.16.0"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1"
+  }
+}
